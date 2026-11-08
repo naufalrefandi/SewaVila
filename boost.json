@@ -1,0 +1,8 @@
+{
+    "cloud": true,
+    "guidelines": true,
+    "skills": [
+        "infer-conventions",
+        "deploying-to-cloud"
+    ]
+}
