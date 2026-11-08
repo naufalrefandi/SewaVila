@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminVillaBookingController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\AuthController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\RentalController;
 use App\Http\Controllers\SubmissionController;
+use App\Http\Controllers\VillaRentalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +41,16 @@ Route::get('/favorit', [PropertyController::class, 'favorites'])->name('properti
 
 Route::get('/properti/{slug}', [PropertyController::class, 'show'])->name('properties.show');
 Route::get('/p/{code}', [PropertyController::class, 'shortRedirect'])->name('properties.short');
+
+// Sewa Villa & QRIS Payment
+Route::get('/sewa-villa', [VillaRentalController::class, 'index'])->name('villas.index');
+Route::get('/sewa-villa/cek-booking', [VillaRentalController::class, 'checkBooking'])->name('villas.check');
+Route::get('/sewa-villa/{slug}', [VillaRentalController::class, 'show'])->name('villas.show');
+Route::post('/sewa-villa/{property}/book', [VillaRentalController::class, 'book'])->name('villas.book');
+Route::get('/sewa-villa/pembayaran/{code}', [VillaRentalController::class, 'showPayment'])->name('villas.payment');
+Route::post('/sewa-villa/pembayaran/{code}/bukti', [VillaRentalController::class, 'submitPaymentProof'])->name('villas.payment.proof');
+Route::post('/sewa-villa/pembayaran/{code}/simulasi-qris', [VillaRentalController::class, 'simulateQrisPayment'])->name('villas.payment.simulate');
+Route::get('/sewa-villa/voucher/{code}', [VillaRentalController::class, 'printVoucher'])->name('villas.voucher');
 
 // Agent Directory & Join as Agent
 Route::get('/agen', [AgentController::class, 'index'])->name('agents.index');
@@ -88,6 +100,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::post('/rentals/{rental}/complete', [RentalController::class, 'complete'])->name('rentals.complete');
     Route::post('/rentals/{rental}/extend', [RentalController::class, 'extend'])->name('rentals.extend');
     Route::delete('/rentals/{rental}', [RentalController::class, 'destroy'])->name('rentals.destroy');
+
+    // Villa Bookings & QRIS Payment Management
+    Route::get('/villa-bookings', [AdminVillaBookingController::class, 'index'])->name('villa-bookings.index');
+    Route::get('/villa-bookings/{booking}', [AdminVillaBookingController::class, 'show'])->name('villa-bookings.show');
+    Route::post('/villa-bookings/{booking}/confirm-payment', [AdminVillaBookingController::class, 'confirmPayment'])->name('villa-bookings.confirm-payment');
+    Route::post('/villa-bookings/{booking}/status', [AdminVillaBookingController::class, 'updateStatus'])->name('villa-bookings.status');
+    Route::delete('/villa-bookings/{booking}', [AdminVillaBookingController::class, 'destroy'])->name('villa-bookings.destroy');
 
     // Quick Apartment Stock Sheet & WhatsApp Quick Share
     Route::get('/apartment-stock', [AdminController::class, 'apartmentStock'])->name('apartment-stock');

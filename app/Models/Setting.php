@@ -47,6 +47,10 @@ class Setting extends Model
         'featured_listing_price' => 50000,
         'featured_duration_days' => 30,
 
+        // Sewa Villa
+        'villa_cleaning_fee' => 150000,
+        'villa_security_deposit' => 0,
+
         // QRIS Info
         'qris_image' => null,
         'qris_merchant_name' => 'YProperti Official QRIS',

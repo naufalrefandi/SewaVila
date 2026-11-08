@@ -275,7 +275,38 @@
     </div>
 </section>
 
-<!-- Top Agents Showcase Section (Compact / Dibuat Kecil) -->
+<!-- Sewa Vila Banner Highlight on Home -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 sm:mt-12">
+    <div class="relative bg-gradient-to-r from-pink-900 via-rose-800 to-slate-900 rounded-3xl p-6 sm:p-10 text-white overflow-hidden shadow-xl border border-pink-700/50">
+        <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-pink-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div class="max-w-2xl space-y-2">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-500/30 text-pink-200 border border-pink-400/40 text-xs font-black uppercase tracking-wider">
+                    <i class="fa-solid fa-umbrella-beach text-amber-300"></i> Fitur Baru &bull; Sewa Vila &bull; Bayar QRIS
+                </span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
+                    Staycation Impian di Vila Mewah dengan Private Pool
+                </h2>
+                <p class="text-xs sm:text-sm text-pink-100/90 leading-relaxed">
+                    Nikmati liburan tak terlupakan di Bali, Puncak, Lembang, Batu, dan Jogja. Reservasi instan, cek tanggal ketersediaan secara real-time, dan selesaikan pembayaran aman via QRIS.
+                </p>
+            </div>
+
+            <div class="shrink-0 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                <a href="{{ route('villas.index') }}"
+                   class="px-6 py-3.5 rounded-2xl bg-white hover:bg-pink-50 text-pink-700 font-black text-sm shadow-lg transition-all text-center flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-qrcode text-base text-pink-600"></i>
+                    <span>Jelajahi &amp; Sewa Vila &rarr;</span>
+                </a>
+                <a href="{{ route('villas.check') }}"
+                   class="px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs sm:text-sm transition-all text-center flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-ticket"></i>
+                    <span>Cek Booking</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- "Titip Properti / Mau Jual Properti?" Banner -->
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 sm:mt-10 mb-8">

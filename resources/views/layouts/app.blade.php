@@ -311,10 +311,13 @@
                                         <span class="w-6 h-6 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center text-xs"><i class="fa-solid fa-store"></i></span>
                                         <span>Ruko Disewa</span>
                                     </a>
-                                    <a href="{{ route('properties.index', ['listing_type' => 'disewa', 'property_type' => 'villa']) }}"
-                                       class="flex items-center gap-2.5 p-2 rounded-xl text-slate-700 hover:bg-pink-50 hover:text-pink-600 transition-colors {{ request('listing_type') === 'disewa' && request('property_type') === 'villa' ? 'bg-pink-50 text-pink-600 font-bold' : '' }}">
-                                        <span class="w-6 h-6 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center text-xs"><i class="fa-solid fa-umbrella-beach"></i></span>
-                                        <span>Villa Disewa</span>
+                                    <a href="{{ route('villas.index') }}"
+                                       class="flex items-center justify-between p-2 rounded-xl text-slate-700 hover:bg-pink-50 hover:text-pink-600 transition-colors {{ request()->routeIs('villas.*') ? 'bg-pink-50 text-pink-600 font-bold' : '' }}">
+                                        <div class="flex items-center gap-2.5">
+                                            <span class="w-6 h-6 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center text-xs"><i class="fa-solid fa-umbrella-beach"></i></span>
+                                            <span>Sewa Vila Liburan</span>
+                                        </div>
+                                        <span class="bg-amber-100 text-amber-900 text-[9px] font-black px-1.5 py-0.2 rounded-md">QRIS</span>
                                     </a>
                                     <a href="{{ route('properties.index', ['listing_type' => 'disewa', 'property_type' => 'tanah']) }}"
                                        class="flex items-center gap-2.5 p-2 rounded-xl text-slate-700 hover:bg-pink-50 hover:text-pink-600 transition-colors {{ request('listing_type') === 'disewa' && request('property_type') === 'tanah' ? 'bg-pink-50 text-pink-600 font-bold' : '' }}">
@@ -329,6 +332,13 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Sewa Vila Dedicated Menu -->
+                        <a href="{{ route('villas.index') }}" class="px-3.5 py-2 rounded-xl text-sm font-bold {{ request()->routeIs('villas.*') ? 'text-white bg-pink-700 shadow-xs' : 'text-pink-50 hover:text-white hover:bg-pink-700/60' }} transition-colors flex items-center gap-1.5">
+                            <i class="fa-solid fa-umbrella-beach text-amber-300 text-xs"></i>
+                            <span>Sewa Vila</span>
+                            <span class="bg-amber-400 text-amber-950 text-[9px] font-black px-1.5 py-0.5 rounded-full uppercase tracking-wider shadow-xs">QRIS</span>
+                        </a>
 
                         <a href="{{ route('properties.new-launch') }}" class="px-3.5 py-2 rounded-xl text-sm font-semibold {{ request()->routeIs('properties.new-launch') ? 'text-white bg-pink-700 font-bold shadow-xs' : 'text-pink-50 hover:text-white hover:bg-pink-700/60' }} transition-colors flex items-center gap-1.5">
                             Proyek Baru
@@ -443,8 +453,9 @@
                     <a href="{{ route('properties.index', ['listing_type' => 'disewa', 'property_type' => 'ruko']) }}" class="flex items-center gap-2 py-1.5 text-slate-600 hover:text-pink-600">
                         <i class="fa-solid fa-store text-slate-400 text-[10px] w-4"></i> Ruko Disewa
                     </a>
-                    <a href="{{ route('properties.index', ['listing_type' => 'disewa', 'property_type' => 'villa']) }}" class="flex items-center gap-2 py-1.5 text-slate-600 hover:text-pink-600">
-                        <i class="fa-solid fa-umbrella-beach text-slate-400 text-[10px] w-4"></i> Villa Disewa
+                    <a href="{{ route('villas.index') }}" class="flex items-center justify-between py-1.5 text-slate-700 hover:text-pink-600 font-bold">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-umbrella-beach text-pink-500 text-[10px] w-4"></i> Sewa Vila (Bayar QRIS)</span>
+                        <span class="bg-amber-100 text-amber-900 text-[9px] font-black px-1.5 py-0.2 rounded-md">QRIS</span>
                     </a>
                     <a href="{{ route('properties.index', ['listing_type' => 'disewa', 'property_type' => 'tanah']) }}" class="flex items-center gap-2 py-1.5 text-slate-600 hover:text-pink-600">
                         <i class="fa-solid fa-map text-pink-500 text-[10px] w-4"></i> Tanah Disewa
@@ -454,6 +465,15 @@
                     </a>
                 </div>
             </div>
+
+            <!-- Sewa Vila Mobile Menu -->
+            <a href="{{ route('villas.index') }}" class="flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-bold bg-pink-50 text-pink-700 hover:bg-pink-100 border border-pink-200">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-umbrella-beach text-pink-600 w-5"></i>
+                    <span>Sewa Vila (Bayar QRIS)</span>
+                </div>
+                <span class="bg-amber-400 text-amber-950 text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider">QRIS</span>
+            </a>
 
             <a href="{{ route('properties.new-launch') }}" class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-800 hover:bg-pink-50 hover:text-pink-600">
                 <i class="fa-solid fa-city w-6 text-pink-600"></i> Proyek Baru

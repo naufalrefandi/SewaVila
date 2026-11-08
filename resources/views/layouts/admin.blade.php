@@ -192,6 +192,20 @@
                     @endif
                 </a>
 
+                <a href="{{ route('admin.villa-bookings.index') }}"
+                   class="flex items-center justify-between px-4 py-2.5 rounded-xl transition-all {{ request()->routeIs('admin.villa-bookings*') ? 'bg-pink-600 text-white shadow-md shadow-pink-600/20' : 'text-slate-600 hover:text-pink-600 hover:bg-pink-50/70' }}">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-umbrella-beach text-pink-500 w-6 text-base text-center"></i>
+                        <span>Sewa Vila &amp; QRIS</span>
+                    </div>
+                    @php
+                        $pendingVillaCount = \App\Models\VillaBooking::when(auth()->user() && auth()->user()->isAgent(), fn($q) => $q->where('agent_id', auth()->user()->agent_id))->where('payment_status', 'pending')->count();
+                    @endphp
+                    @if($pendingVillaCount > 0)
+                        <span class="text-[10px] bg-pink-600 text-white font-extrabold px-1.5 py-0.2 rounded-full">{{ $pendingVillaCount }}</span>
+                    @endif
+                </a>
+
                 <a href="{{ route('admin.properties', ['type' => 'tanah']) }}"
                    class="flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all {{ request('type') === 'tanah' ? 'bg-pink-600 text-white shadow-md' : 'text-slate-600 hover:text-pink-600 hover:bg-pink-50/70' }}">
                     <i class="fa-solid fa-map w-6 text-base text-center text-pink-500"></i>

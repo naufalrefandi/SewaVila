@@ -97,9 +97,28 @@ class Property extends Model
         return $this->hasOne(PropertyRental::class)->where('status', 'active')->latestOfMany();
     }
 
+    public function villaBookings(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(VillaBooking::class);
+    }
+
     public function isApartemen(): bool
     {
         return strtolower((string) ($this->property_type ?? '')) === 'apartemen';
+    }
+
+    public function isVilla(): bool
+    {
+        return strtolower((string) ($this->property_type ?? '')) === 'villa';
+    }
+
+    public function getMaxGuestsAttribute(): int
+    {
+        if ($this->bedrooms && $this->bedrooms > 0) {
+            return max(2, (int) $this->bedrooms * 2);
+        }
+
+        return 6;
     }
 
     public function getPropertyCodeAttribute(?string $value): ?string
@@ -1045,6 +1064,11 @@ class Property extends Model
     public function scopeForRent(Builder $query): Builder
     {
         return $query->whereIn('listing_type', ['disewa', 'dijual_disewa']);
+    }
+
+    public function scopeVilla(Builder $query): Builder
+    {
+        return $query->where('property_type', 'villa');
     }
 
     /**

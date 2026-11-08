@@ -105,6 +105,9 @@ class DatabaseSeeder extends Seeder
         // 2. Seed Master Data: Provinces, Cities, Districts, Apartment Projects
         $this->call(MasterDataSeeder::class);
 
+        // 3. Seed Luxury Villas for Vacation Rentals
+        $this->call(VillaSeeder::class);
+
         // Note: Property listings are decoupled from default seeding as requested.
         // If in testing environment, seed properties so test suites have fixtures.
         // In local/production, properties can be seeded manually with:

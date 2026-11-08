@@ -405,6 +405,16 @@
                                 <i class="fa-regular fa-calendar-check mr-1"></i> Pilihan Sewa Bulanan: Rp {{ number_format($property->monthly_rent_price / 1000000, $property->monthly_rent_price % 1000000 == 0 ? 0 : 1, ',', '.') }} Jt/bln
                             </div>
                         @endif
+
+                        @if($property->isVilla())
+                            <div class="mt-2">
+                                <a href="{{ route('villas.show', $property->slug) }}"
+                                   class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-700 hover:to-rose-700 text-white font-black text-xs shadow-md shadow-pink-600/30 transition-all transform hover:-translate-y-0.5">
+                                    <i class="fa-solid fa-umbrella-beach"></i>
+                                    <span>Pesan &amp; Sewa Vila Ini (Bayar via QRIS) &rarr;</span>
+                                </a>
+                            </div>
+                        @endif
                     </div>
 
                     @if($property->property_type === 'tanah' && $property->price_per_meter)
@@ -1205,6 +1215,33 @@
                     </a>
                 </div>
             </div>
+
+            @if($property->isVilla())
+                <!-- Sewa Vila Dedicated QRIS Booking Callout -->
+                <div class="bg-gradient-to-br from-pink-700 via-pink-600 to-rose-700 rounded-3xl p-5 sm:p-6 text-white shadow-xl space-y-3 border-2 border-pink-400">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-black uppercase tracking-wider text-pink-100 bg-white/20 px-2.5 py-0.5 rounded-full">
+                            <i class="fa-solid fa-umbrella-beach mr-1"></i> Sewa Vila Liburan
+                        </span>
+                        <span class="bg-amber-400 text-amber-950 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
+                            QRIS Instan
+                        </span>
+                    </div>
+
+                    <div>
+                        <h3 class="font-black text-lg leading-snug">Ingin Sewa Vila Ini?</h3>
+                        <p class="text-xs text-pink-100/90 mt-1">
+                            Pilih tanggal menginap, kalkulasi total harga otomatis, dan bayar aman dengan scan QRIS resmi.
+                        </p>
+                    </div>
+
+                    <a href="{{ route('villas.show', $property->slug) }}"
+                       class="w-full py-3 px-4 rounded-2xl bg-white hover:bg-pink-50 text-pink-700 font-black text-xs shadow-md transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-qrcode text-base"></i>
+                        <span>Buka Form Booking &amp; Bayar QRIS &rarr;</span>
+                    </a>
+                </div>
+            @endif
 
             <!-- Inquiry Lead Capture Form -->
             <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-sm">
